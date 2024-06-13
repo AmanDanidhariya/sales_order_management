@@ -1,10 +1,13 @@
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import "./App.css";
+import ColorModeSwitch from "./components/ColorModeSwitch";
 
 function App() {
   return (
     <>
-      <Button colorScheme="blue">Button</Button>
+      <div>
+        <ColorModeSwitch />
+      </div>
     </>
   );
 }
