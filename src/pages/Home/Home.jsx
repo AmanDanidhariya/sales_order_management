@@ -1,23 +1,24 @@
-import { Box, Button, Container } from '@chakra-ui/react'
-import React from 'react'
-import Buttons from '../../components/Buttons'
+import { Box, Container, Flex } from "@chakra-ui/react";
+import Buttons from "../../components/Buttons";
+import ColorModeSwitch from "../../components/ColorModeSwitch";
 
 const Home = () => {
   return (
-    <Container>
-        {/* buttons start */}
+    <Container maxW="100vw" p="3rem">
+      {/* buttons start */}
+      <Flex justifyContent="space-between">
         <Box>
-            <Box>
-                    active/completed
-            </Box>
-            <Box>
-                <Buttons color="yellow" text="+ sale order"/>
-            </Box>
-            
+          <Buttons color="blue" text="Active Sale Orders" />
+          <Buttons color="green" text="Completed Sale Orders" />
         </Box>
-        {/* buttons end */}
+        <Flex>
+          <ColorModeSwitch />
+          <Buttons color="yellow" text="+ Sale order" />
+        </Flex>
+      </Flex>
+      {/* buttons end */}
     </Container>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
