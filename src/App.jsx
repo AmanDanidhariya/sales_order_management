@@ -23,9 +23,9 @@ function App() {
         <Routes>
           <Route index element={<Navigate replace to="login" />} />
           <Route path="/login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<Home />} />
-          <Route path="SaleOrder" element={<SaleOrder />} />
+          <Route path="/saleorder" element={<SaleOrder />} />
           <Route path="*" element="page Not Found" />
         </Routes>
       </BrowserRouter>
