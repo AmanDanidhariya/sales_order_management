@@ -32,6 +32,9 @@ const backgroundColor = {
     800: "#4d4d4d",
     900: "#333333",
   },
+  custom:{
+    grayTransparent: "rgba(204,204,204,0.1)"
+  }
 };
 
 const fonts = {

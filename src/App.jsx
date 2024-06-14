@@ -14,9 +14,9 @@ import Signup from "./pages/Signup/Signup";
 function App() {
   return (
     <>
-      {/* <div>
+      <div>
         <ColorModeSwitch /> 
-      </div> */}
+      </div>
 
       <BrowserRouter>
         <Routes>
