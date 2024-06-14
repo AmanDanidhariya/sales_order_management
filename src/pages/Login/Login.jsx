@@ -3,18 +3,21 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
+  FormHelperText,
   FormLabel,
+  Heading,
   Input,
+  Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import Form from "../../components/Form";
 
 const Login = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
@@ -22,7 +25,7 @@ const Login = () => {
   };
 
   const formbg = useColorModeValue("gray.300", "gray.600");
-  const color = useColorModeValue("gray.700", "gray.300"); //light dark
+  const color = useColorModeValue("gray.700", "gray.300");
 
   return (
     <Box
@@ -38,12 +41,13 @@ const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
         maxW="60%"
         w="40%"
-        h="50%"
+        h="60%"
         bg={formbg}
         p="5rem"
         borderRadius="lg"
         color={color}
       >
+        <Heading textAlign="center">LOGIN</Heading>
         <FormControl isInvalid={errors.email}>
           <FormLabel fontSize="3xl" my="1rem" htmlFor="email">
             Email
@@ -81,7 +85,7 @@ const Login = () => {
               },
             })}
           />
-          <FormErrorMessage  fontSize="2xl">
+          <FormErrorMessage fontSize="2xl">
             {errors.password && errors.password.message}
           </FormErrorMessage>
         </FormControl>
@@ -95,6 +99,12 @@ const Login = () => {
         >
           Login
         </Button>
+        <Text>
+          Don&apos;t have an account, create one :-{" "}
+          <Link to="/signup" style={{ fontWeight: "800", color: "#17181c" }}>
+            Signup
+          </Link>
+        </Text>
       </Box>
     </Box>
   );
