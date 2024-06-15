@@ -1,3 +1,4 @@
+
 import { extendTheme } from "@chakra-ui/react";
 import { Global } from "@emotion/react";
 import { MultiSelectTheme } from "chakra-multiselect";
@@ -40,7 +41,7 @@ const backgroundColor = {
 
 const fonts = {
   heading: "Roboto, sans-serif",
-  body: "Roboto, sans-serif",
+  body: "Figtree, sans-serif",
   mono: "Menlo, monospace",
 };
 

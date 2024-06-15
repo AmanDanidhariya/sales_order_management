@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { initializeApp } from "firebase/app";
+import {getFirestore} from "firebase/firestore"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -11,6 +12,7 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
+const db= getFirestore(firebaseApp)
 
 const FirebaseContext = createContext(null);
 
