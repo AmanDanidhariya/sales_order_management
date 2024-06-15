@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
   Input,
   Modal,
   ModalBody,
@@ -16,26 +15,17 @@ import {
   Spinner,
   Text,
   VStack,
-  useStatStyles,
 } from "@chakra-ui/react";
 import { MultiSelect } from "chakra-multiselect";
 import { useState } from "react";
 import { UseFireStoreQuery } from "../context/firebase";
+import SaleOrderFormCard from "./SaleOrderFormCard";
 
 const arr = [
-  { id: 0, value: "f" },
-  { id: 1, value: "r" },
-  { id: 2, value: "f" },
+  { id: 0, value: "product_1" },
+  { id: 1, value: "product_2" },
+  { id: 2, value: "product_3" },
 ];
-const product = {
-  id: 247,
-  selling_price: 32,
-  max_retail_price: 32,
-  amount: 33,
-  unit: "kg",
-  quantity_in_inventory: 0,
-  product: 209,
-};
 
 const SaleOrderModal = ({ isOpen, onClose }) => {
   const [value, setValue] = useState([]);
@@ -66,45 +56,7 @@ const SaleOrderModal = ({ isOpen, onClose }) => {
           <Box key={product.id}>
             {product.sku &&
               product.sku.map((item) => (
-                <Box key={item.id} p={3} borderRadius="lg" boxShadow="md">
-                  <Flex
-                    fontSize="2xl"
-                    fontWeight="600"
-                    borderBottom="1px solid gray"
-                    my={3}
-                  >
-                    <Text>
-                      1. SKU {item.id} ({item.product} {item.unit})
-                    </Text>
-                    <Spacer />
-                    <Text>Rate : &#8377; {item.max_retail_price}</Text>
-                  </Flex>
-                  <Flex my={7} justifyContent="space-around">
-                    <VStack>
-                      <Text fontSize="xl" fontWeight="600">
-                        Selling Rate
-                      </Text>
-                      <Input type="number" placeholder="Enter Selling rate" />
-                    </VStack>
-
-                    <VStack>
-                      <Text fontSize="xl" fontWeight="600">
-                        Total items
-                      </Text>
-                      <Input type="number" placeholder="Enter Quantity" />
-                    </VStack>
-                  </Flex>
-                  <Flex justifyContent="flex-end">
-                    <Badge
-                      fontSize="1.1rem"
-                      p={2}
-                      borderRadius="2xl"
-                      colorScheme="green"
-                    >
-                      {item.quantity_in_inventory} Item(s) Remaining
-                    </Badge>
-                  </Flex>
-                </Box>
+                <SaleOrderFormCard key={item.id} item={item} />
               ))}
           </Box>
         ))}
