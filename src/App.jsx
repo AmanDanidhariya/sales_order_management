@@ -7,11 +7,10 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import "./App.css";
-import ColorModeSwitch from "./components/ColorModeSwitch";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
-import SaleOrder from "./components/SaleOrder";
+import SaleOrderModal from "./components/SaleOrderModal";
 
 function App() {
   return (
@@ -25,7 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/saleorder" element={<SaleOrder />} />
+          <Route path="/saleorder" element={<SaleOrderModal />} />
           <Route path="*" element="page Not Found" />
         </Routes>
       </BrowserRouter>

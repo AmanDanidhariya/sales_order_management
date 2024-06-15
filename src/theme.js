@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 import { Global } from "@emotion/react";
+import { MultiSelectTheme } from "chakra-multiselect";
 
 const config = {
   initialColorMode: "dark",
@@ -32,9 +33,9 @@ const backgroundColor = {
     800: "#4d4d4d",
     900: "#333333",
   },
-  custom:{
-    grayTransparent: "rgba(204,204,204,0.1)"
-  }
+  custom: {
+    grayTransparent: "rgba(204,204,204,0.1)",
+  },
 };
 
 const fonts = {
@@ -61,10 +62,10 @@ const globalStyles = {
   html: {
     fontSize: "62.5%",
   },
-  body: { 
+  body: {
     fontFamily: "body",
     lineHeight: "base",
-    fontSize:"3xl",
+    fontSize: "3xl",
   },
 };
 
@@ -78,6 +79,9 @@ const theme = extendTheme({
   fontWeights,
   styles: {
     global: globalStyles,
+  },
+  components: {
+    MultiSelect: MultiSelectTheme,
   },
 });
 

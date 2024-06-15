@@ -16,5 +16,5 @@ const FirebaseContext = createContext(null);
 
 
 export const FirebaseProvider = ({ children }) => {
-  return <FirebaseContext.Provider>{children}</FirebaseContext.Provider>;
+  return <FirebaseContext.Provider value={"dbkjb"}>{children}</FirebaseContext.Provider>;
 };
