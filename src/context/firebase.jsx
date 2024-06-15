@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { initializeApp } from "firebase/app";
-import {getFirestore} from "firebase/firestore"
+import { getFirestore, collection, getDoc, getDocs } from "firebase/firestore";
+import { useQuery } from "@tanstack/react-query";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -12,11 +13,24 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-const db= getFirestore(firebaseApp)
-
+const db = getFirestore(firebaseApp);
+//create context API instance
 const FirebaseContext = createContext(null);
 
-
+//context provider
 export const FirebaseProvider = ({ children }) => {
-  return <FirebaseContext.Provider value={"dbkjb"}>{children}</FirebaseContext.Provider>;
+  return (
+    <FirebaseContext.Provider value={db}>{children}</FirebaseContext.Provider>
+  );
+};
+
+// Custom Hook to Fetch Firestore Data
+export const UseFireStoreQuery = (collectionName) => {
+  return useQuery({
+    queryKey: [collectionName],
+    queryFn: async () => {
+      const snapshot = await getDocs(collection(db, collectionName));
+      return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    },
+  });
 };
