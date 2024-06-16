@@ -15,11 +15,14 @@ import {
   Spinner,
   Text,
   VStack,
+  useEditable,
 } from "@chakra-ui/react";
 import { MultiSelect } from "chakra-multiselect";
-import { useState } from "react";
-import { UseFireStoreQuery } from "../context/firebase";
+import { useEffect, useState } from "react";
+// import { UseFireStoreQuery } from "../context/firebase";
 import SaleOrderFormCard from "./SaleOrderFormCard";
+import { fetchData } from "../utils/http";
+import { useQuery } from "@tanstack/react-query";
 
 const arr = [
   { id: 0, value: "product_1" },
@@ -29,7 +32,11 @@ const arr = [
 
 const SaleOrderModal = ({ isOpen, onClose }) => {
   const [value, setValue] = useState([]);
-  const { isLoading, error, data } = UseFireStoreQuery("product");
+
+  const { isLoading, error, data, isError } = useQuery({
+    queryKey: ["product"],
+    queryFn: fetchData,
+  });
 
   const handleChange = (selectedValue) => {
     setValue(selectedValue);
@@ -48,6 +55,9 @@ const SaleOrderModal = ({ isOpen, onClose }) => {
         size="xl"
       />
     );
+  if (isError) {
+    throw Error(error);
+  }
 
   if (data) {
     content = (
@@ -82,7 +92,13 @@ const SaleOrderModal = ({ isOpen, onClose }) => {
           {content}
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={onClose}>
+          <Button
+            fontWeight="700"
+            colorScheme="red"
+            mr={3}
+            px={6}
+            onClick={onClose}
+          >
             Close
           </Button>
         </ModalFooter>
