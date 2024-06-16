@@ -3,25 +3,46 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
-  FormHelperText,
   FormLabel,
   Heading,
   Input,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { fetchCustomer } from "../../utils/http";
+import { useQuery } from "@tanstack/react-query";
 
 const Login = () => {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: "jesus_christ@church.com",
+      password: "11908",
+    },
+  });
+  const { data: allCustomers } = useQuery({
+    queryKey: ["customer"],
+    queryFn: fetchCustomer,
+  });
 
   const onSubmit = (data) => {
-    console.log(data);
+    let password = Number(data.password);
+    const foundCustomer = allCustomers.find(
+      (customer) =>
+        customer.customer_profile.email === data.email &&
+        customer.customer === password
+    );
+    if (foundCustomer) {
+      navigate("/home");
+    } else {
+      throw new Error("Invalid Email or Password.");
+    }
   };
 
   const formbg = useColorModeValue("gray.300", "gray.600");
@@ -80,7 +101,7 @@ const Login = () => {
             {...register("password", {
               required: "Password is required",
               minLength: {
-                value: 6,
+                value: 4,
                 message: "password must be at least 6 characters",
               },
             })}
