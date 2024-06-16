@@ -11,14 +11,10 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Spacer,
   Spinner,
-  Text,
-  VStack,
-  useEditable,
 } from "@chakra-ui/react";
 import { MultiSelect } from "chakra-multiselect";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import { UseFireStoreQuery } from "../context/firebase";
 import SaleOrderFormCard from "./SaleOrderFormCard";
 import { fetchData } from "../utils/http";

@@ -9,6 +9,7 @@ import SaleOrderModal from "../../components/SaleOrderModal";
 
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [filterProductData,setfilterProductData] = useState(null)
   const [activeFilter, setActiveFilter] = useState("active");
   const [findCustomer, setFindCustomer] = useState();
 
@@ -40,8 +41,11 @@ const Home = () => {
         (customer) => customer.customer === customerId
       );
       setFindCustomer(matched);
+      setfilterProductData(filter)
     }
   };
+
+  console.log(filterProductData);
 
   return (
     <Container maxW="100vw" p="3rem">
@@ -67,7 +71,7 @@ const Home = () => {
       </Flex>
       {/* buttons end */}
       <Box>
-        <TableData filterData={findCustomer} />
+        <TableData filterData={findCustomer} modalData={filterProductData}/>
       </Box>
     </Container>
   );

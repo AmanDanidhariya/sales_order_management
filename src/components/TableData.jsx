@@ -13,8 +13,12 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { BsThreeDots } from "react-icons/bs";
+import TableDataModal from "./TableDataModal";
+import { useState } from "react";
 
-const TableData = ({ filterData }) => {
+const TableData = ({ filterData, modalData }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   function tableDate() {
     const year = new Date(Date.now()).getFullYear();
     const date = new Date(Date.now()).getDate();
@@ -23,6 +27,8 @@ const TableData = ({ filterData }) => {
     const minute = new Date(Date.now()).getMinutes();
     return `${date} / ${month} / ${year} (${hour} : ${minute})`;
   }
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   console.log(filterData);
   return (
@@ -72,7 +78,8 @@ const TableData = ({ filterData }) => {
               <Td>100</Td>
               <Td>{tableDate()}</Td>
               <Td>
-                <BsThreeDots cursor="pointer" />
+                <BsThreeDots cursor="pointer" onClick={openModal} />
+                <TableDataModal isOpen={isOpen} onClose={closeModal} modalData={modalData}/>
               </Td>
             </Tr>
           </Tbody>
